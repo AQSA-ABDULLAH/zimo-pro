@@ -25,7 +25,7 @@ export default function Section2() {
       <div className="flex justify-end px-8">
         <div className="text-center flex flex-col items-center">
           <div className="flex justify-center">
-            <img src="/images/zimo-logo-2.png" alt="Zimo Logo" className="h-28 mb-3" />
+            <img src="/zimo-logo-2.png" alt="Zimo Logo" className="h-28 mb-3" />
           </div>
           <p
             className="uppercase text-[16px] max-w-[420px] text-center font-medium leading-8 tracking-widest"
