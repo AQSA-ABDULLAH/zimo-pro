@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 
 export default function Section1() {
     const [currentDateTime, setCurrentDateTime] = useState({
@@ -8,6 +8,11 @@ export default function Section1() {
         location: "London, United Kingdom",
     });
 
+    const mainContentRef = useRef(null); // Ref for main content div
+    const logoRef = useRef(null); // Ref for the logo image
+    const [isMainContentVisible, setIsMainContentVisible] = useState(false); // Main content visibility
+    const [isLogoVisible, setIsLogoVisible] = useState(false); // Logo visibility
+
     useEffect(() => {
         const updateDateTime = () => {
             const now = new Date();
@@ -15,18 +20,42 @@ export default function Section1() {
             const optionsTime = { hour: "2-digit", minute: "2-digit", hour12: false };
 
             setCurrentDateTime({
-                time: now.toLocaleTimeString("en-GB", optionsTime), // 24-hour format
+                time: now.toLocaleTimeString("en-GB", optionsTime),
                 date: now.toLocaleDateString("en-GB", optionsDate),
                 location: "London, United Kingdom",
             });
         };
 
-        // Initial update
         updateDateTime();
-
-        // Optional: Update every minute (60000ms)
         const interval = setInterval(updateDateTime, 60000);
-        return () => clearInterval(interval); // Cleanup on unmount
+        return () => clearInterval(interval);
+    }, []);
+
+    const observeElement = (ref, setIsVisible) => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                setIsVisible(entry.isIntersecting);
+            },
+            { threshold: 0.3 }
+        );
+
+        if (ref.current) {
+            observer.observe(ref.current);
+        }
+
+        return () => {
+            if (ref.current) observer.unobserve(ref.current);
+        };
+    };
+
+    useEffect(() => {
+        const mainContentCleanup = observeElement(mainContentRef, setIsMainContentVisible);
+        const logoCleanup = observeElement(logoRef, setIsLogoVisible);
+
+        return () => {
+            mainContentCleanup();
+            logoCleanup();
+        };
     }, []);
 
     return (
@@ -46,8 +75,11 @@ export default function Section1() {
                 </div>
 
                 {/* Center Logo */}
-                <div className="mt-4 md:mt-0">
-                    <img src="/images/zimo-logo2.png" className="h-[75px] w-43" />
+                <div
+                    ref={logoRef} // Add ref to the logo
+                    className={`mt-4 md:mt-0 ${isLogoVisible ? "animate-fadeDown" : "opacity-0"}`} // Add animation dynamically
+                >
+                    <img src="/images/zimo-logo2.png" className="h-[75px] w-43" alt="Center Logo" />
                 </div>
 
                 {/* Right Section */}
@@ -69,7 +101,12 @@ export default function Section1() {
             </div>
 
             {/* Main Content */}
-            <div className="flex flex-col items-center justify-center py-20 md:py-56 md:items-start md:justify-start md:pl-16">
+            <div
+                ref={mainContentRef}
+                className={`flex flex-col items-center justify-center py-20 md:py-56 md:items-start md:justify-start md:pl-16 ${
+                    isMainContentVisible ? "animate-fadeRight" : "opacity-0"
+                }`}
+            >
                 <h1
                     className="text-3xl mb-2"
                     style={{ letterSpacing: "5px" }}
@@ -107,3 +144,5 @@ export default function Section1() {
         </div>
     );
 }
+
+

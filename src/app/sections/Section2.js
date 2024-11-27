@@ -1,34 +1,116 @@
+"use client";
+import React, { useEffect, useRef, useState } from "react";
+
 export default function Section2() {
+  // Refs for each section
+  const headingRef = useRef(null);
+  const mainContentRef = useRef(null);
+  const logoTaglineRef = useRef(null);
+  const subContentRef = useRef(null);
+
+  // State to track visibility for animations
+  const [isHeadingVisible, setIsHeadingVisible] = useState(false);
+  const [isMainContentVisible, setIsMainContentVisible] = useState(false);
+  const [isLogoTaglineVisible, setIsLogoTaglineVisible] = useState(false);
+  const [isSubContentVisible, setIsSubContentVisible] = useState(false);
+
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.3, // Element is considered visible when 30% of it is in the viewport
+    };
+  
+    const observerCallback = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          // Element is in view, trigger animation
+          switch (entry.target) {
+            case headingRef.current:
+              setIsHeadingVisible(true);
+              break;
+            case mainContentRef.current:
+              setIsMainContentVisible(true);
+              break;
+            case logoTaglineRef.current:
+              setIsLogoTaglineVisible(true);
+              break;
+            case subContentRef.current:
+              setIsSubContentVisible(true);
+              break;
+            default:
+              break;
+          }
+        } else {
+          // Element is out of view, reset animation state
+          switch (entry.target) {
+            case headingRef.current:
+              setIsHeadingVisible(false);
+              break;
+            case mainContentRef.current:
+              setIsMainContentVisible(false);
+              break;
+            case logoTaglineRef.current:
+              setIsLogoTaglineVisible(false);
+              break;
+            case subContentRef.current:
+              setIsSubContentVisible(false);
+              break;
+            default:
+              break;
+          }
+        }
+      });
+    };
+  
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+  
+    // Observe elements
+    if (headingRef.current) observer.observe(headingRef.current);
+    if (mainContentRef.current) observer.observe(mainContentRef.current);
+    if (logoTaglineRef.current) observer.observe(logoTaglineRef.current);
+    if (subContentRef.current) observer.observe(subContentRef.current);
+  
+    return () => {
+      observer.disconnect(); // Cleanup observer on unmount
+    };
+  }, []);
+  
+
   return (
     <div className="min-h-screen bg-white text-black font-sans">
       {/* Header */}
-      <div className="text-center py-8 px-4 md:px-8">
+      <div
+        ref={headingRef}
+        className={`text-center py-8 px-4 md:px-8 ${isHeadingVisible ? "animate-fadeDown" : "opacity-0"
+          }`}
+      >
         <h1 className="uppercase font-medium tracking-widest text-sm md:text-lg lg:text-xl">
           A Real Estate and Property Platform That Is Changing the World
         </h1>
       </div>
 
       {/* Main Content */}
-      <div className="pt-8 md:pt-8 md:px-8">
-        <h2
-          className="px-1 uppercase text-[20px] md:text-[26px] lg:text-[31px] mb-[-8px] md:tracking-[5px]"
-        >
+      <div
+        ref={mainContentRef}
+        className={`pt-8 md:pt-8 md:px-8 ${isMainContentVisible ? "animate-fadeRight" : "opacity-0"
+          }`}
+      >
+        <h2 className="px-1 uppercase text-[20px] md:text-[26px] lg:text-[31px] mb-[-8px] md:tracking-[5px]">
           A Revolutionary Platform
         </h2>
-        <h3
-          className="text-[32px] md:text-[48px] lg:text-[56px] font-normal mb-[-28px] md:tracking-[5px]"
-        >
+        <h3 className="text-[32px] md:text-[48px] lg:text-[56px] font-normal mb-[-28px] md:tracking-[5px]">
           ENTRIES - SELLERS
         </h3>
-        <p
-          className="text-[48px] md:text-[74px] lg:text-[86px] font-normal md:tracking-[5px]"
-        >
+        <p className="text-[48px] md:text-[74px] lg:text-[86px] font-normal md:tracking-[5px]">
           WORLDWIDE
         </p>
       </div>
 
       {/* Logo and Tagline */}
-      <div className="flex flex-col md:flex-row justify-end items-center md:items-start px-4 md:px-8 sm:mt-18">
+      <div
+        ref={logoTaglineRef}
+        className={`flex flex-col md:flex-row justify-end items-center md:items-start px-4 md:px-8 sm:mt-18 ${isLogoTaglineVisible ? "animate-fadeRightToLeft" : "opacity-0"
+          }`}
+      >
         <div className="text-center md:text-left flex flex-col items-center md:items-start">
           <div className="flex justify-center md:justify-start">
             <img
@@ -37,26 +119,24 @@ export default function Section2() {
               className="h-16 md:h-24 lg:h-28 mb-3"
             />
           </div>
-          <p
-            className="uppercase text-[14px] md:text-[16px] max-w-[420px] text-center font-medium leading-6 md:leading-8 tracking-widest"
-          >
+          <p className="uppercase text-[14px] md:text-[16px] max-w-[420px] text-center font-medium leading-6 md:leading-8 tracking-widest">
             Connecting users from across the globe to facilitate life's most important personal transactions.
           </p>
         </div>
       </div>
 
       {/* Sub Content */}
-      <div className="px-4 md:px-8 pb-8 md:pb-16 sm:pt-6 md:mt-0 sm:mt-20">
-        <h4
-          className="uppercase text-[20px] md:text-[30px] lg:text-[36px] font-normal mb-4 tracking-widest"
-        >
+      <div
+        ref={subContentRef}
+        className={`px-4 md:px-8 pb-8 md:pb-16 sm:pt-6 md:mt-0 sm:mt-20 ${isSubContentVisible ? "animate-fadeRight" : "opacity-0"
+          }`}
+      >
+        <h4 className="uppercase text-[20px] md:text-[30px] lg:text-[36px] font-normal mb-4 tracking-widest">
           The Best of the Best
         </h4>
-        <p
-          className="leading-7 max-w-[320px] md:max-w-[580px] lg:max-w-[680px] uppercase text-[12px] md:text-[15px] tracking-widest text-center sm:text-left"
-        >
-          A combination of automation and manual curation, our pro agents and moderation team select the highest quality
-          listings on the market from across the world.
+        <p className="leading-7 max-w-[320px] md:max-w-[580px] lg:max-w-[680px] uppercase text-[12px] md:text-[15px] tracking-widest text-center sm:text-left">
+          A combination of automation and manual curation, our pro agents and moderation team select the
+          highest quality listings on the market from across the world.
         </p>
       </div>
 
@@ -69,4 +149,5 @@ export default function Section2() {
     </div>
   );
 }
+
 

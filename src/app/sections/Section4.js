@@ -1,18 +1,66 @@
+"use client";
+import React, { useEffect, useRef, useState } from "react";
+
 const Section4 = () => {
+  const sectionRefs = useRef([]);
+  const [visibleStates, setVisibleStates] = useState([]);
+
+  useEffect(() => {
+    // Intersection Observer to trigger animations
+    const observerOptions = {
+      threshold: 0.3, // Trigger when 30% of the element is visible
+    };
+
+    const observerCallback = (entries) => {
+      entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+          // Mark element as visible
+          setVisibleStates((prevState) => {
+            const newState = [...prevState];
+            newState[index] = true;
+            return newState;
+          });
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+    // Observe each section element
+    sectionRefs.current.forEach((ref) => ref && observer.observe(ref));
+
+    return () => observer.disconnect(); // Cleanup
+  }, []);
+
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-white text-center px-4 md:px-8 py-8">
       {/* Header */}
-      <h1 className="text-[24px] md:text-[32px] font-normal mb-6 md:mb-14 mt-6 md:mt-10 tracking-widest">
+      <h1
+        ref={(el) => (sectionRefs.current[0] = el)}
+        className={`text-[24px] md:text-[32px] font-normal mb-6 md:mb-14 mt-6 md:mt-10 tracking-widest transition-all duration-700 ${
+          visibleStates[0] ? "animate-fadeDown" : "opacity-0 translate-y-[-50px]"
+        }`}
+      >
         ONE PLATFORM FOR ALL PREMIUM LISTINGS
       </h1>
-      <h2 className="text-[20px] md:text-[26px] font-normal mb-12 md:mb-36 tracking-widest">
+      <h2
+        ref={(el) => (sectionRefs.current[1] = el)}
+        className={`text-[20px] md:text-[26px] font-normal mb-12 md:mb-36 tracking-widest transition-all duration-700 ${
+          visibleStates[1] ? "animate-fadeUp" : "opacity-0 translate-y-[50px]"
+        }`}
+      >
         UNLIMITED POTENTIAL
       </h2>
 
       {/* Main Body */}
       <div className="flex flex-col md:flex-row items-center gap-10 md:gap-20">
         {/* Left Content */}
-        <div className="flex flex-col items-center md:items-start text-center md:text-left justify-center">
+        <div
+          ref={(el) => (sectionRefs.current[2] = el)}
+          className={`flex flex-col items-center md:items-start text-center md:text-left justify-center transition-all duration-700 ${
+            visibleStates[2] ? "animate-fadeRight" : "opacity-0 translate-x-[-50px]"
+          }`}
+        >
           <img
             src="/images/zimo-logo4.png"
             alt="Logo"
@@ -30,7 +78,12 @@ const Section4 = () => {
         </div>
 
         {/* Right Content */}
-        <div className="flex flex-col items-center">
+        <div
+          ref={(el) => (sectionRefs.current[3] = el)}
+          className={`flex flex-col items-center transition-all duration-700 ${
+            visibleStates[3] ? "animate-zoomInUp" : "opacity-0 scale-[0.8]"
+          }`}
+        >
           <img
             src="/images/potrait.png"
             alt="Portrait"
@@ -46,5 +99,6 @@ const Section4 = () => {
 };
 
 export default Section4;
+
 
 
