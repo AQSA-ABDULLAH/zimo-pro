@@ -8,10 +8,8 @@ export default function Section1() {
         location: "London, United Kingdom",
     });
 
-    const mainContentRef = useRef(null); // Ref for main content div
-    const logoRef = useRef(null); // Ref for the logo image
-    const [isMainContentVisible, setIsMainContentVisible] = useState(false); // Main content visibility
-    const [isLogoVisible, setIsLogoVisible] = useState(false); // Logo visibility
+    const mainContentRef = useRef(null); // Create a ref for the main content div
+    const [isVisible, setIsVisible] = useState(false); // Track visibility
 
     useEffect(() => {
         const updateDateTime = () => {
@@ -20,41 +18,41 @@ export default function Section1() {
             const optionsTime = { hour: "2-digit", minute: "2-digit", hour12: false };
 
             setCurrentDateTime({
-                time: now.toLocaleTimeString("en-GB", optionsTime),
+                time: now.toLocaleTimeString("en-GB", optionsTime), // 24-hour format
                 date: now.toLocaleDateString("en-GB", optionsDate),
                 location: "London, United Kingdom",
             });
         };
 
+        // Initial update
         updateDateTime();
+
+        // Optional: Update every minute (60000ms)
         const interval = setInterval(updateDateTime, 60000);
-        return () => clearInterval(interval);
+        return () => clearInterval(interval); // Cleanup on unmount
     }, []);
 
-    const observeElement = (ref, setIsVisible) => {
+    useEffect(() => {
+        // Use Intersection Observer to detect when the element is in view
         const observer = new IntersectionObserver(
             ([entry]) => {
-                setIsVisible(entry.isIntersecting);
+                if (entry.isIntersecting) {
+                    setIsVisible(true); // Trigger animation
+                } else {
+                    setIsVisible(false); // Reset if needed
+                }
             },
-            { threshold: 0.3 }
+            { threshold: 0.3 } // Adjust threshold as needed
         );
 
-        if (ref.current) {
-            observer.observe(ref.current);
+        if (mainContentRef.current) {
+            observer.observe(mainContentRef.current);
         }
 
         return () => {
-            if (ref.current) observer.unobserve(ref.current);
-        };
-    };
-
-    useEffect(() => {
-        const mainContentCleanup = observeElement(mainContentRef, setIsMainContentVisible);
-        const logoCleanup = observeElement(logoRef, setIsLogoVisible);
-
-        return () => {
-            mainContentCleanup();
-            logoCleanup();
+            if (mainContentRef.current) {
+                observer.unobserve(mainContentRef.current);
+            }
         };
     }, []);
 
@@ -75,11 +73,8 @@ export default function Section1() {
                 </div>
 
                 {/* Center Logo */}
-                <div
-                    ref={logoRef} // Add ref to the logo
-                    className={`mt-4 md:mt-0 ${isLogoVisible ? "animate-fadeDown" : "opacity-0"}`} // Add animation dynamically
-                >
-                    <img src="/images/zimo-logo2.png" className="h-[75px] w-43" alt="Center Logo" />
+                <div className="mt-4 md:mt-0">
+                    <img src="/images/zimo-logo2.png" className="h-[75px] w-43" />
                 </div>
 
                 {/* Right Section */}
@@ -100,12 +95,12 @@ export default function Section1() {
                 </div>
             </div>
 
-            {/* Main Content */}
+            {/* Main Content with fadeRight Animation */}
             <div
                 ref={mainContentRef}
                 className={`flex flex-col items-center justify-center py-20 md:py-56 md:items-start md:justify-start md:pl-16 ${
-                    isMainContentVisible ? "animate-fadeRight" : "opacity-0"
-                }`}
+                    isVisible ? "animate-fadeRight" : "opacity-0"
+                }`} // Add animation class when visible
             >
                 <h1
                     className="text-3xl mb-2"
@@ -144,5 +139,6 @@ export default function Section1() {
         </div>
     );
 }
+
 
 
