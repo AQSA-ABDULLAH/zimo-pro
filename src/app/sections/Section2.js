@@ -1,4 +1,3 @@
-// pages/index.js
 export default function Section2() {
   return (
     <div className="min-h-screen bg-white text-black font-sans">
@@ -10,29 +9,26 @@ export default function Section2() {
       </div>
 
       {/* Main Content */}
-      <div className="pt-8 md:pt-16 px-4 md:px-8">
+      <div className="pt-8 md:pt-8 md:px-8">
         <h2
-          className="px-1 uppercase text-[20px] md:text-[26px] lg:text-[32px]"
-          style={{ letterSpacing: "5px" }}
+          className="px-1 uppercase text-[20px] md:text-[26px] lg:text-[31px] mb-[-8px] md:tracking-[5px]"
         >
           A Revolutionary Platform
         </h2>
         <h3
-          className="text-[32px] md:text-[48px] lg:text-[56px] font-normal"
-          style={{ letterSpacing: "5px" }}
+          className="text-[32px] md:text-[48px] lg:text-[56px] font-normal mb-[-28px] md:tracking-[5px]"
         >
           ENTRIES - SELLERS
         </h3>
         <p
-          className="text-[48px] md:text-[74px] lg:text-[86px] font-normal"
-          style={{ letterSpacing: "5px" }}
+          className="text-[48px] md:text-[74px] lg:text-[86px] font-normal md:tracking-[5px]"
         >
           WORLDWIDE
         </p>
       </div>
 
       {/* Logo and Tagline */}
-      <div className="flex flex-col md:flex-row justify-end items-center md:items-start px-4 md:px-8 mt-8 md:mt-16">
+      <div className="flex flex-col md:flex-row justify-end items-center md:items-start px-4 md:px-8 sm:mt-18">
         <div className="text-center md:text-left flex flex-col items-center md:items-start">
           <div className="flex justify-center md:justify-start">
             <img
@@ -42,7 +38,7 @@ export default function Section2() {
             />
           </div>
           <p
-            className="uppercase text-[14px] md:text-[16px] lg:text-[18px] max-w-[280px] md:max-w-[420px] text-center md:text-left font-medium leading-6 md:leading-8 tracking-widest"
+            className="uppercase text-[14px] md:text-[16px] max-w-[420px] text-center font-medium leading-6 md:leading-8 tracking-widest"
           >
             Connecting users from across the globe to facilitate life's most important personal transactions.
           </p>
@@ -50,14 +46,14 @@ export default function Section2() {
       </div>
 
       {/* Sub Content */}
-      <div className="pb-8 md:pb-16 px-4 md:px-8 mt-8 md:mt-12">
+      <div className="px-4 md:px-8 pb-8 md:pb-16 sm:pt-6 md:mt-0 sm:mt-20">
         <h4
           className="uppercase text-[20px] md:text-[30px] lg:text-[36px] font-normal mb-4 tracking-widest"
         >
           The Best of the Best
         </h4>
         <p
-          className="max-w-[320px] md:max-w-[580px] lg:max-w-[680px] uppercase text-[12px] md:text-[15px] tracking-widest"
+          className="leading-7 max-w-[320px] md:max-w-[580px] lg:max-w-[680px] uppercase text-[12px] md:text-[15px] tracking-widest text-center sm:text-left"
         >
           A combination of automation and manual curation, our pro agents and moderation team select the highest quality
           listings on the market from across the world.
