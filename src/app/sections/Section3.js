@@ -42,11 +42,13 @@ export default function Section3() {
 
   return (
     <div className="px-4 md:px-8 py-8 md:py-16">
-      <header>
-        <h2 className="text-[24px] md:text-[30px] font-normal mb-6 md:mb-10 tracking-widest text-center md:text-left">
+      <header className="flex flex-col md:flex-row justify-between items-center md:items-start px-4 md:px-8 py-4">
+        <h2 className="text-[24px] md:text-[30px] 2xl:text-[50px] font-normal mb-4 md:mb-0 tracking-widest text-center md:text-left">
           OUR CATEGORIES
         </h2>
+        <img src="/images/carousel.png" className="w-[100px] md:w-[150px] 2xl:w-[200px] object-contain mt-4 md:mt-0" alt="Carousel" />
       </header>
+
 
       <main className="flex flex-wrap justify-center md:justify-between gap-4">
         {["cat1.png", "cat2.png", "cat3.png", "cat4.png"].map((src, index) => (
@@ -55,9 +57,8 @@ export default function Section3() {
             ref={(el) => (imgRefs.current[index] = el)} // Attach refs
             src={`/images/${src}`}
             alt={`Category ${index + 1}`}
-            className={`w-[45%] md:w-1/4 lg:w-[22%] object-contain transition-all duration-500 ${
-              visibleStates[index] ? "animate-fadeUp" : "opacity-0"
-            }`}
+            className={`w-[45%] md:w-1/4 lg:w-[22%] object-contain transition-all duration-500 ${visibleStates[index] ? "animate-fadeUp" : "opacity-0"
+              }`}
           />
         ))}
       </main>

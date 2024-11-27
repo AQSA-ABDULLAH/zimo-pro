@@ -94,13 +94,13 @@ export default function Section2() {
         className={`pt-8 md:pt-8 md:px-8 ${isMainContentVisible ? "animate-fadeRight" : "opacity-0"
           }`}
       >
-        <h2 className="px-1 uppercase text-[20px] md:text-[26px] lg:text-[31px] mb-[-8px] md:tracking-[5px] 2xl:text-[42px]">
+        <h2 className="px-1 uppercase text-[20px] md:text-[26px] lg:text-[31px] mb-[-8px] md:tracking-[5px] 2xl:text-[54px]">
           A Revolutionary Platform
         </h2>
-        <h3 className="text-[32px] md:text-[48px] lg:text-[56px] font-normal mb-[-28px] md:tracking-[5px] 2xl:text-[76px]">
+        <h3 className="text-[32px] md:text-[48px] lg:text-[56px] font-normal mb-[-28px] md:tracking-[5px] 2xl:text-[94px]">
           ENTRIES - SELLERS
         </h3>
-        <p className="text-[48px] md:text-[74px] lg:text-[86px] font-normal md:tracking-[5px] 2xl:text-[114px]">
+        <p className="text-[48px] md:text-[74px] lg:text-[86px] font-normal md:tracking-[5px] 2xl:text-[140px]">
           WORLDWIDE
         </p>
       </div>
@@ -116,10 +116,11 @@ export default function Section2() {
             <img
               src="/images/zimo-logo-2.png"
               alt="Zimo Logo"
-              className="h-16 md:h-24 lg:h-28 mb-3"
+              className="h-16 md:h-24 lg:h-28 mb-3 2xl:h-[220px]"
             />
           </div>
-          <p className="uppercase text-[14px] md:text-[16px] max-w-[420px] text-center font-medium leading-6 md:leading-8 tracking-widest">
+          <p className="uppercase text-[14px] 2xl:text-[29px] md:text-[16px] 2xl:max-w-[800px] max-w-[420px] text-center font-medium leading-6
+          2xl:leading-10 md:leading-8 tracking-widest">
             Connecting users from across the globe to facilitate life's most important personal transactions.
           </p>
         </div>
@@ -131,10 +132,10 @@ export default function Section2() {
         className={`px-4 md:px-8 pb-8 md:pb-16 sm:pt-6 md:mt-0 sm:mt-20 ${isSubContentVisible ? "animate-fadeRight" : "opacity-0"
           }`}
       >
-        <h4 className="uppercase text-[20px] md:text-[30px] lg:text-[36px] font-normal mb-4 tracking-widest">
+        <h4 className="uppercase text-[20px] md:text-[30px] lg:text-[36px] font-normal mb-4 tracking-widest 2xl:text-[60px]">
           The Best of the Best
         </h4>
-        <p className="leading-7 max-w-[320px] md:max-w-[580px] lg:max-w-[680px] uppercase text-[12px] md:text-[15px] tracking-widest text-center sm:text-left">
+        <p className="leading-10 max-w-[320px] 2xl:max-w-[980px] md:max-w-[580px] lg:max-w-[680px] uppercase 2xl:text-[24px] text-[12px] md:text-[15px] tracking-widest text-center sm:text-left">
           A combination of automation and manual curation, our pro agents and moderation team select the
           highest quality listings on the market from across the world.
         </p>
@@ -143,7 +144,7 @@ export default function Section2() {
       {/* Scroll Indicator */}
       <div className="flex justify-center m-4">
         <button className="animate-bounce">
-          <img src="/images/arrow.png" alt="Scroll" className="h-8 md:h-10" />
+          <img src="/images/arrow.png" alt="Scroll" className="h-8 md:h-10 2xl:w-[98px] 2xl:h-[90px]" />
         </button>
       </div>
     </div>
