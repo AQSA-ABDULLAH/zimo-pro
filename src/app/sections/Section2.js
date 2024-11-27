@@ -83,7 +83,7 @@ export default function Section2() {
         className={`text-center py-8 px-4 md:px-8 ${isHeadingVisible ? "animate-fadeDown" : "opacity-0"
           }`}
       >
-        <h1 className="uppercase font-medium tracking-widest text-sm md:text-lg lg:text-xl">
+        <h1 className="uppercase font-medium tracking-widest mt-6 text-sm md:text-lg lg:text-xl 2xl:text-[28px]">
           A Real Estate and Property Platform That Is Changing the World
         </h1>
       </div>
@@ -94,13 +94,13 @@ export default function Section2() {
         className={`pt-8 md:pt-8 md:px-8 ${isMainContentVisible ? "animate-fadeRight" : "opacity-0"
           }`}
       >
-        <h2 className="px-1 uppercase text-[20px] md:text-[26px] lg:text-[31px] mb-[-8px] md:tracking-[5px]">
+        <h2 className="px-1 uppercase text-[20px] md:text-[26px] lg:text-[31px] mb-[-8px] md:tracking-[5px] 2xl:text-[42px]">
           A Revolutionary Platform
         </h2>
-        <h3 className="text-[32px] md:text-[48px] lg:text-[56px] font-normal mb-[-28px] md:tracking-[5px]">
+        <h3 className="text-[32px] md:text-[48px] lg:text-[56px] font-normal mb-[-28px] md:tracking-[5px] 2xl:text-[76px]">
           ENTRIES - SELLERS
         </h3>
-        <p className="text-[48px] md:text-[74px] lg:text-[86px] font-normal md:tracking-[5px]">
+        <p className="text-[48px] md:text-[74px] lg:text-[86px] font-normal md:tracking-[5px] 2xl:text-[114px]">
           WORLDWIDE
         </p>
       </div>
