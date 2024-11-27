@@ -8,8 +8,8 @@ export default function Section1() {
         location: "London, United Kingdom",
     });
 
-    const mainContentRef = useRef(null); // Create a ref for the main content div
-    const [isVisible, setIsVisible] = useState(false); // Track visibility
+    const mainContentRef = useRef(null); 
+    const [isVisible, setIsVisible] = useState(false); 
 
     useEffect(() => {
         const updateDateTime = () => {
@@ -18,7 +18,7 @@ export default function Section1() {
             const optionsTime = { hour: "2-digit", minute: "2-digit", hour12: false };
 
             setCurrentDateTime({
-                time: now.toLocaleTimeString("en-GB", optionsTime), // 24-hour format
+                time: now.toLocaleTimeString("en-GB", optionsTime), 
                 date: now.toLocaleDateString("en-GB", optionsDate),
                 location: "London, United Kingdom",
             });
@@ -139,6 +139,3 @@ export default function Section1() {
         </div>
     );
 }
-
-
-

@@ -42,7 +42,7 @@ export default function Section5() {
         {/* Top Content */}
         <div className="flex justify-end px-4 md:px-10 py-8 md:py-12">
           <div
-            className={`flex flex-col items-start text-right md:items-end transition-opacity duration-500 ${
+            className={`flex flex-col items-start text-right transition-opacity duration-500 ${
               isVisible ? "animate-fadeRightToLeft" : "opacity-0"
             }`}
           >
